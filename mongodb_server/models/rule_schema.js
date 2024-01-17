@@ -14,16 +14,19 @@ const rule_schema = new mongoose.Schema({
         required: false,
         unique: false
     },
+    connectedBy: string,
     ruleSchema: {
         property: {
             type: string,
             required: true,
-            unique: true
+            unique: true,
+
         },
         operator: {
             type: string,
             required: true,
-            unique: true
+            unique: true,
+
         },
         value: {
             type: number,

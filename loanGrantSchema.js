@@ -1,4 +1,6 @@
-LoanGrantSchema = [
+// for SQL
+
+LoanGrantRuleSchema = [ // loan k grant ka rule ka schema
     {
         id: 1,
         creditScore: 123,
@@ -7,8 +9,15 @@ LoanGrantSchema = [
         emploment: true, // employment h ya ni : so true or false
         debt_to_income: 0.2,
         loan_grant: false
-    }
+    },
 ]
+
+// incentive grant schema
+
+
+
+
+
 
 RuleGrantSchema = [
     {
