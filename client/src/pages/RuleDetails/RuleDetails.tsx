@@ -26,7 +26,7 @@ const RuleDetails = () => {
     }
 
     // for taking inputs from the form fields
-    const handleFormChange = (event, index) => {
+    const handleFormChange = (event: any, index: any) => {
         // event.preventDefault()
         let data: any = [...formFields]
         data[index][event.target.name] = event.target.value

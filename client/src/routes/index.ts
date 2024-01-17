@@ -7,6 +7,9 @@ const FormLayout = lazy(() => import('../pages/Form/FormLayout'));
 const Profile = lazy(() => import('../pages/Profile'));
 const Rules = lazy(() => import('../pages/Rules'));
 const RuleDetails = lazy(() => import('../pages/RuleDetails/RuleDetails'));
+const RuleCreatePage = lazy(
+  () => import('../pages/RuleDetails/RuleCreatePage'),
+);
 const Settings = lazy(() => import('../pages/Settings'));
 const Tables = lazy(() => import('../pages/Tables'));
 const Alerts = lazy(() => import('../pages/UiElements/Alerts'));
@@ -64,9 +67,9 @@ const coreRoutes = [
     component: Buttons,
   },
   {
-    path: '/rule/123',
+    path: '/rule/create',
     title: 'Rule Detials',
-    component: RuleDetails,
+    component: RuleCreatePage,
   },
 ];
 

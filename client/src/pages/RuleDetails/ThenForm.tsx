@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { property, operator, numbers } from '../../constants/data'
+import { useCreateLinkedList } from '../../hooks/rules/useCreateLinkedList'
+import { useCreateSentenceFromLinkedList } from '../../hooks/rules/useCreateSentence'
+import { useReplaceComma } from '../../hooks/rules/useReplaceComma'
 
 const ThenForm = () => {
 
@@ -9,6 +12,8 @@ const ThenForm = () => {
         operator: '',
         value: '',
     }])
+
+    const [thenSentence, setThenSentence] = useState('')
 
     // adding form fields
     const addFields = (e: any) => {
@@ -22,13 +27,22 @@ const ThenForm = () => {
     }
 
     // for taking inputs from the form fields
-    const handleFormChange = (event, index) => {
+    const handleFormChange = (event: any, index: any) => {
         // event.preventDefault()
         let data: any = [...formFields]
         data[index][event.target.name] = event.target.value
         console.log(data)
         setFormFields(data)
     }
+    const submit = (e: any) => {
+        e.preventDefault();
+        const linkedList = useCreateLinkedList(formFields)
+        const sentence = useCreateSentenceFromLinkedList(linkedList)
+        const modifiedSentence = useReplaceComma(sentence, 'or')
+        setThenSentence(modifiedSentence)
+
+    }
+    // TODO : combine if and then sentence
 
     return (
         <div className='w-full flex justify-center items-center mt-8'>
@@ -250,6 +264,9 @@ const ThenForm = () => {
                             })}
 
                         </form>
+                        <button className="flex  justify-center rounded bg-primary p-3 font-medium text-gray" onClick={submit}>
+                            Set
+                        </button>
                     </div>
                 </div>
             </div>
