@@ -1,33 +1,39 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const { v4: uuidv4 } = require('uuid');
 
 const ifRruleItemSchema = new mongoose.Schema({
+
     property: {
         type: String,
         required: true,
-        unique: false
+        // Add the following line to prevent null values
+       
     },
     operator: {
         type: String,
         required: true,
-        unique: false
+
     },
     value: {
         type: Number,
         required: true,
-        unique: false
+
     }
 });
 const thenRruleItemSchema = new mongoose.Schema({
+
     property: {
         type: String,
         required: true,
-        unique: false
+        // Add the following line to prevent null values
+       
+
     },
     result: {
         type: String,
         required: true,
-        unique: false
+
     },
 
 });
@@ -39,7 +45,7 @@ const rule_schema = new mongoose.Schema({
         required: false,
         unique: false
     },
-    datecreated: Date,
+
     description: {
         type: String,
         required: false,

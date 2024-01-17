@@ -6,7 +6,7 @@ const FormElements = lazy(() => import('../pages/Form/FormElements'));
 const FormLayout = lazy(() => import('../pages/Form/FormLayout'));
 const Profile = lazy(() => import('../pages/Profile'));
 const Rules = lazy(() => import('../pages/Rules'));
-const RuleDetails = lazy(() => import('../pages/RuleDetails/RuleDetails'));
+const RuleTest = lazy(() => import('../pages/RuleDetails/TestRules'));
 const RuleCreatePage = lazy(
   () => import('../pages/RuleDetails/RuleCreatePage'),
 );
@@ -70,6 +70,11 @@ const coreRoutes = [
     path: '/rule/create',
     title: 'Rule Detials',
     component: RuleCreatePage,
+  },
+  {
+    path: '/rule/test',
+    title: 'Rule Test',
+    component: RuleTest,
   },
 ];
 

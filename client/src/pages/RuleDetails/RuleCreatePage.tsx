@@ -51,13 +51,14 @@ const RuleCreatePage = () => {
 
         // Constructing the rule data
         const ruleData = {
-            name: 'rule1', // You can replace this with a dynamic value if needed
-            description: 'description', // You can replace this with a dynamic value if needed
-            connectedBy: 'someValue', // Replace with the actual value if needed
+            name: 'rule2', // You can replace this with a dynamic value if needed
+            description: 'description12ß', // You can replace this with a dynamic value if needed
+            connectedBy: 'someValueasx', // Replace with the actual value if needed
             ifRuleSchema: formFields, // Using the array of form fields for 'if' conditions
             thenRuleSchema: thenFormFields // Using the array of form fields for 'then' actions
         };
-
+        console.log("RuleData", ruleData)
+        createQuery()
         try {
             const response = await fetch('http://localhost:5002/create-rule', { // Replace with your actual endpoint
                 method: 'POST',
@@ -79,10 +80,6 @@ const RuleCreatePage = () => {
             // Handle the error, such as displaying a message to the user
         }
     };
-
-
-
-    // TODO : add the if sentence to the backend ai server
 
     // For then form
     const [thenFormFields, setThenFormFields] = useState([{
@@ -106,8 +103,18 @@ const RuleCreatePage = () => {
         setThenFormFields(data)
     }
 
+    // creating the sentence 
+    const createQuery = () => {
 
+        const connectedBy = 'AND'; // Or 'OR', depending on your application's logic
 
+        let conditions = formFields.map((item) => {
+            return `${item.property} ${item.operator} '${item.value}'`; // Assuming value is a string or number
+        }).join(` ${connectedBy} `);
+
+        let sentence = `SELECT * FROM userdata WHERE ${conditions}`;
+        console.log(sentence); // For debugging, remove in production
+    }
     return (
         <>
             <Breadcrumb pageName="Create Rule" />
@@ -129,7 +136,7 @@ const RuleCreatePage = () => {
                                         {formFields.map((form, index) => {
                                             return (
                                                 <>
-                                                    <div className="flex gap-4 justify-center items-end border-2 border-red-500" style={{ marginLeft: `${(index + 1) * 20}px` }}>
+                                                    <div className="flex gap-4 justify-center items-end border-2 border-red-500" style={{ marginLeft: `${(index + 1) * 20}px` }} key={index} >
 
                                                         <div>
                                                             <label className="mb-3 block text-black dark:text-white">

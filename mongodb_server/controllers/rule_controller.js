@@ -1,7 +1,9 @@
 const rules = require('../models/rule_schema')
 
 exports.rulepost = async (req, res) => {
+    console.log("Inside rulepost")
     const { name, description, connectedBy, ifRuleSchema, thenRuleSchema } = req.body;
+    console.log("Body: ", req.body)
 
     // Validate ifRuleSchema and thenRuleSchema
     if (!Array.isArray(ifRuleSchema) || ifRuleSchema.length === 0) {
@@ -21,11 +23,18 @@ exports.rulepost = async (req, res) => {
             name,
             description,
             connectedBy,
-            ifRuleSchema, // Directly use the array from req.body
-            thenRuleSchema // Directly use the array from req.body
+            ifRuleSchema,
+            thenRuleSchema
         });
+        console.log("New Rule: ", newRule)
 
-        await newRule.save();
+        await rules.create({
+            name,
+            description,
+            connectedBy,
+            ifRuleSchema,
+            thenRuleSchema
+        });
         res.status(201).json({ message: "Rule added successfully", rule: newRule });
     } catch (error) {
         console.log(error);

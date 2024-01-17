@@ -62,23 +62,23 @@ export const operator: InterfaceOperator[] = [
 
 interface InterfaceNumbers {
   name: string;
-  value: string;
+  value: number;
   id: number;
 }
 export const numbers: InterfaceNumbers[] = [
   {
     name: '1L',
-    value: '100000',
+    value: 100000,
     id: 1,
   },
   {
     name: '1000 or 1K',
-    value: '1000',
+    value: 1000,
     id: 2,
   },
   {
     name: '10000 or 10K',
-    value: '10000',
+    value: 10000,
     id: 3,
   },
 ];
