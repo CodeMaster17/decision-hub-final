@@ -1,41 +1,55 @@
-const mongoose = require('mongoose')
-const validator = require('validator')
+const mongoose = require('mongoose');
+const validator = require('validator');
+
+const ifRruleItemSchema = new mongoose.Schema({
+    property: {
+        type: String,
+        required: true,
+        unique: false
+    },
+    operator: {
+        type: String,
+        required: true,
+        unique: false
+    },
+    value: {
+        type: Number,
+        required: true,
+        unique: false
+    }
+});
+const thenRruleItemSchema = new mongoose.Schema({
+    property: {
+        type: String,
+        required: true,
+        unique: false
+    },
+    result: {
+        type: String,
+        required: true,
+        unique: false
+    },
+
+});
 
 const rule_schema = new mongoose.Schema({
-    id: string,
+
     name: {
-        type: string,
+        type: String,
         required: false,
         unique: false
     },
     datecreated: Date,
-    descriptiopn: {
-        type: string,
+    description: {
+        type: String,
         required: false,
         unique: false
     },
-    connectedBy: string,
-    ruleSchema: {
-        property: {
-            type: string,
-            required: true,
-            unique: true,
+    connectedBy: String,
+    ifRuleSchema: [ifRruleItemSchema],
+    thenRuleSchema: [thenRruleItemSchema],
+});
 
-        },
-        operator: {
-            type: string,
-            required: true,
-            unique: true,
+const RuleSchema = mongoose.model('RuleSchema', rule_schema);
 
-        },
-        value: {
-            type: number,
-            required: true,
-            unique: true
-        }
-    }
-})
-
-const RuleSchema = mongoose.model('RuleSchema', rule_schema)
-
-module.exports = RuleSchema
+module.exports = RuleSchema;

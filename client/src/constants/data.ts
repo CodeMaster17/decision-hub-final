@@ -82,3 +82,44 @@ export const numbers: InterfaceNumbers[] = [
     id: 3,
   },
 ];
+
+interface ThenFormInterface {
+  name: string;
+  value: string;
+  id: number;
+}
+export const thenFormProperties: ThenFormInterface[] = [
+  {
+    name: 'Loan Grant',
+    value: 'Loan Grant',
+    id: 1,
+  },
+  {
+    name: 'Incentive Grant',
+    value: 'Incentive Grant',
+    id: 2,
+  },
+  {
+    name: 'Income Grant',
+    value: 'Incentive Grant',
+    id: 3,
+  },
+];
+
+interface resultInterface {
+  name: string;
+  value: string;
+  id: number;
+}
+export const results: resultInterface[] = [
+  {
+    name: 'True',
+    value: 'True',
+    id: 1,
+  },
+  {
+    name: 'False',
+    value: 'False',
+    id: 2,
+  },
+];

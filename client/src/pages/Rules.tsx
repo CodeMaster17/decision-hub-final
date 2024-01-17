@@ -1,8 +1,32 @@
 
 import { Link } from 'react-router-dom'
 import Breadcrumb from '../components/Breadcrumb'
+import { useState, useEffect } from 'react';
 
 const Rules = () => {
+
+    const [rules, setRules] = useState([]); // State to hold the rules
+
+    useEffect(() => {
+        // Function to fetch rules from the server
+        const fetchRules = async () => {
+            try {
+                const response = await fetch('http://localhost:5002/rules'); // Replace with your actual API endpoint
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setRules(data); // Update the state with the fetched rules
+                console.log(data)
+            } catch (error) {
+                console.error('Error fetching rules:', error);
+            }
+        };
+
+        fetchRules(); // Call the function to fetch rules
+    }, []);
+
+
     return (
         <>
             <Breadcrumb pageName="Rules" />
@@ -44,32 +68,39 @@ const Rules = () => {
                         </div>
                     </div>
                 </div>
-                <Link to="/rule/123">
-                    <div className="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-5">
-                        <div className="flex items-center gap-3 p-2.5 xl:p-5">
-                            <div className="flex-shrink-0">
-                                <img src="" alt="Brand" />
-                            </div>
-                            <p className="hidden text-black dark:text-white sm:block">Google</p>
-                        </div>
+                {rules.map((rule: any) => {
+                    return (
+                        <>
+                            <Link to="/rule/123">
+                                <div className="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-5">
+                                    <div className="flex items-center gap-3 p-2.5 xl:p-5">
+                                        <div className="flex-shrink-0">
+                                            <img src="" alt="Brand" />
+                                        </div>
+                                        <p className="hidden text-black dark:text-white sm:block">{rule.name}</p>
+                                    </div>
 
-                        <div className="flex items-center justify-center p-2.5 xl:p-5">
-                            <p className="text-black dark:text-white">3.5K</p>
-                        </div>
+                                    <div className="flex items-center justify-center p-2.5 xl:p-5">
+                                        <p className="text-black dark:text-white">3.5K</p>
+                                    </div>
 
-                        <div className="flex items-center justify-center p-2.5 xl:p-5">
-                            <p className="text-meta-3">$5,768</p>
-                        </div>
+                                    <div className="flex items-center justify-center p-2.5 xl:p-5">
+                                        <p className="text-meta-3">$5,768</p>
+                                    </div>
 
-                        <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-                            <p className="text-black dark:text-white">590</p>
-                        </div>
+                                    <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+                                        <p className="text-black dark:text-white">590</p>
+                                    </div>
 
-                        <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-                            <p className="text-meta-5">4.8%</p>
-                        </div>
-                    </div>
-                </Link>
+                                    <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+                                        <p className="text-meta-5">4.8%</p>
+                                    </div>
+                                </div>
+                            </Link>
+                        </>
+                    )
+                })}
+
             </div>
 
         </>
