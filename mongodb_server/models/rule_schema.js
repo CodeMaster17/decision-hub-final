@@ -8,7 +8,7 @@ const ifRruleItemSchema = new mongoose.Schema({
         type: String,
         required: true,
         // Add the following line to prevent null values
-       
+
     },
     operator: {
         type: String,
@@ -27,7 +27,7 @@ const thenRruleItemSchema = new mongoose.Schema({
         type: String,
         required: true,
         // Add the following line to prevent null values
-       
+
 
     },
     result: {
