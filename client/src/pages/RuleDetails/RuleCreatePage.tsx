@@ -35,7 +35,7 @@ const RuleCreatePage = () => {
         // event.preventDefault()
         let data: any = [...formFields]
         data[index][event.target.name] = event.target.value
-        console.log(data)
+        console.log("If form", data)
         setFormFields(data)
     }
 

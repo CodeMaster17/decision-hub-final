@@ -26,7 +26,7 @@ exports.rulepost = async (req, res) => {
             ifRuleSchema,
             thenRuleSchema
         });
-        console.log("New Rule: ", newRule)
+        // console.log("New Rule: ", newRule)
 
         await rules.create({
             name,
@@ -49,5 +49,15 @@ exports.getAllRules = async (req, res) => {
         res.status(200).json(rulesData);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching rules', error: error.message });
+    }
+};
+
+// get a rule by id
+exports.getRuleById = async (req, res) => {
+    try {
+        const rule = await rules.findById(req.params.id); // Fetch rule by id
+        res.status(200).json(rule);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching rule', error: error.message });
     }
 };

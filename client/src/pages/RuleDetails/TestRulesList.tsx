@@ -1,17 +1,15 @@
-
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Breadcrumb from '../components/Breadcrumb'
-import { useState, useEffect } from 'react';
+import Breadcrumb from '../../components/Breadcrumb'
 
-const Rules = () => {
-
+const TestRules = () => {
     const [rules, setRules] = useState([]); // State to hold the rules
 
     useEffect(() => {
         // Function to fetch rules from the server
         const fetchRules = async () => {
             try {
-                const response = await fetch('http://localhost:5002/rules');
+                const response = await fetch('http://localhost:5002/rules'); // Replace with your actual API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -26,10 +24,9 @@ const Rules = () => {
         fetchRules(); // Call the function to fetch rules
     }, []);
 
-
     return (
         <>
-            <Breadcrumb pageName="Rules" />
+            <Breadcrumb pageName="Test Rules" />
             <Link to="/rule/create" className="flex  justify-center rounded bg-primary p-3 font-medium text-gray w-[200px]">
                 Create rules +
             </Link>
@@ -71,7 +68,7 @@ const Rules = () => {
                 {rules.map((rule: any) => {
                     return (
                         <>
-                            <Link to="/rule/123">
+                            <Link to={`/rule/${rule._id}`}>
                                 <div className="grid grid-cols-3 border-b border-stroke dark:border-strokedark sm:grid-cols-5">
                                     <div className="flex items-center gap-3 p-2.5 xl:p-5">
                                         <div className="flex-shrink-0">
@@ -102,9 +99,8 @@ const Rules = () => {
                 })}
 
             </div>
-
         </>
     )
 }
 
-export default Rules
+export default TestRules

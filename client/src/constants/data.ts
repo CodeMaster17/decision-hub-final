@@ -6,7 +6,7 @@ interface InterfaceProperty {
 export const property: InterfaceProperty[] = [
   {
     name: 'Income',
-    value: 'value 1',
+    value: 'Income',
     id: 1,
   },
   {
@@ -29,33 +29,33 @@ interface InterfaceOperator {
 
 export const operator: InterfaceOperator[] = [
   {
-    value: 'greater than',
-    name: '>',
+    name: 'greater than',
+    value: '>',
     id: 1,
   },
   {
-    value: 'less than',
-    name: '<',
+    name: 'less than',
+    value: '<',
     id: 2,
   },
   {
-    value: 'greater than equal to',
-    name: '>=',
+    name: 'greater than equal to',
+    value: '>=',
     id: 3,
   },
   {
-    value: 'less than equal to',
-    name: '<=',
+    name: 'less than equal to',
+    value: '<=',
     id: 4,
   },
   {
-    value: 'equals to',
-    name: '==',
+    name: 'equals to',
+    value: '==',
     id: 5,
   },
   {
-    value: 'not equal to',
-    name: '!=',
+    name: 'not equal to',
+    value: '!=',
     id: 6,
   },
 ];
