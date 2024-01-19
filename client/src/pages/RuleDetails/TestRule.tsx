@@ -7,8 +7,7 @@ interface ToggleStates {
 }
 interface Rule {
     _id: string;
-    // Include other properties of the rule here
-
+   
 }
 interface DataResult {
     name: string;
