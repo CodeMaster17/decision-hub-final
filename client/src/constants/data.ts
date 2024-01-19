@@ -140,3 +140,9 @@ export const combine: combineInterface[] = [
     id: 2,
   },
 ];
+interface properties {
+
+}
+export const properties: properties[] = [
+  
+]

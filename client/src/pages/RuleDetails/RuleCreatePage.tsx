@@ -7,7 +7,22 @@ import RightSidebar from '../../components/RightSidebar'
 import DropDownIcon from '../../svg/DropDownIcon'
 import { useFetchColumns } from '../../hooks/rules/useFetchCcolumnsHook'
 
+import { AutoComplete, AutoCompleteCompleteEvent } from "primereact/autocomplete";
+
+
+
 const RuleCreatePage = () => {
+
+    //* prime react
+    const [value, setValue] = useState<string>('');
+    const [items, setItems] = useState<string[]>([]);
+
+    const search = (event: AutoCompleteCompleteEvent) => {
+        const query = event.query.toLowerCase();
+        const filteredProperties = property.filter(item => item.toLowerCase().includes(query));
+        setItems(filteredProperties);
+    };
+
 
     // * Testing functionality
     const [testState, setTestState] = useState(false)
@@ -62,9 +77,12 @@ const RuleCreatePage = () => {
     }
 
     // for taking inputs from the form fields
-    const handleFormChange = (event: any, index: any) => {
-        let data: any = [...formFields];
-        data[index][event.target.name] = event.target.value;
+    const handleFormChange = (event, index, name) => {
+        // let data: any = [...formFields];
+        // data[index][event.target.name] = event.target.value;
+        // setFormFields(data);
+        let data = [...formFields];
+        data[index][name] = event.target ? event.target.value : event;
         setFormFields(data);
     };
     const save = async (e) => {
@@ -141,8 +159,10 @@ const RuleCreatePage = () => {
     useEffect(() => {
         const fetcFunction = async () => {
             let columns = await useFetchColumns();
-            console.log(columns)
-            setProperty(columns)
+            const columnNames = columns.map(column => column.column_name);
+
+            console.log("Array Values", columnNames)
+            setProperty(columnNames)
         }
         fetcFunction()
     }, []);
@@ -232,6 +252,7 @@ const RuleCreatePage = () => {
                                                                 <label className="mb-3 block text-black dark:text-white">
                                                                     Select Property
                                                                 </label>
+                                                                {/*
                                                                 <div className="relative z-20 bg-white dark:bg-form-input">
                                                                     <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" name="property" value={form.property} onChange={(e) => handleFormChange(e, index)}>
                                                                         {property.map((item) => {
@@ -245,7 +266,17 @@ const RuleCreatePage = () => {
                                                                     <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
                                                                         <DropDownIcon />
                                                                     </span>
-                                                                </div>
+                                                                </div> */}
+
+                                                                <AutoComplete value={form.property} suggestions={items}
+                                                                    completeMethod={search}
+                                                                    className="w-full rounded border-white bg-white bg-transparent py-3 h-full font-medium outline-none transition 
+                                                                    active:border-white
+                                                                    disabled:cursor-default disabled:bg-whiter  dark:bg-form-input "
+                                                                    onChange={(e) => handleFormChange(e.value, index, 'property')} />
+
+
+
                                                             </div>
                                                             <div>
                                                                 <label className="mb-3 block text-black dark:text-white">
@@ -254,7 +285,7 @@ const RuleCreatePage = () => {
                                                                 <div className="relative z-20 bg-white dark:bg-form-input">
 
                                                                     <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                                                        name="operator" value={form.operator} onChange={(e) => handleFormChange(e, index)}
+                                                                        name="operator" value={form.operator} onChange={(e) => handleFormChange(e, index, 'operator')}
                                                                     >
                                                                         {operator.map((item) => {
                                                                             return (
@@ -282,7 +313,8 @@ const RuleCreatePage = () => {
                                                                         id='value'
                                                                         name="value"
                                                                         value={form.value}
-                                                                        onChange={(e) => handleFormChange(e, index)}
+                                                                        onChange={(e) => handleFormChange(e, index, 'value')}
+
                                                                     />
 
                                                                 </div>
@@ -293,7 +325,7 @@ const RuleCreatePage = () => {
                                                             </button>
 
                                                         </div>
-                                                    </div>
+                                                    </div >
                                                 </>
                                             )
                                         })}
@@ -385,7 +417,7 @@ const RuleCreatePage = () => {
                     </div>
                 </div >
 
-            </div>
+            </div >
         </>
     )
 }
