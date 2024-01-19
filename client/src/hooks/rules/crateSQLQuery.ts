@@ -1,6 +1,6 @@
 // creating the sentence
-export const createQuery = (formFields) => {
-  const connectedBy = 'AND'; // Or 'OR', depending on your application's logic
+export const createQuery = (formFields, connectedBy) => {
+  // Or 'OR', depending on your application's logic
 
   let conditions = formFields
     .map((item) => {
@@ -11,4 +11,3 @@ export const createQuery = (formFields) => {
   let sentence = `SELECT * FROM userdata WHERE ${conditions}`;
   return sentence;
 };
-

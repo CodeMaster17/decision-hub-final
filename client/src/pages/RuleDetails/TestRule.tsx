@@ -85,7 +85,7 @@ const TestRule = () => {
     useEffect(() => {
         // Generate SQL query based on updated toggleStates
         const activeRules = dataResult.ifRuleSchema.filter(rule => toggleStates[rule._id]);
-        const SQLQUERY = createQuery(activeRules);
+        const SQLQUERY = createQuery(activeRules, dataResult.connectedBy);
         setSQLQUERY(SQLQUERY);
         sendSQlTOPG()
         console.log(SQLQUERY);

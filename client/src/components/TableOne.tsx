@@ -10,7 +10,7 @@ const TableOne = ({ userData, userDatacolumn }) => {
 
 
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-        Top Channels
+        User Data
       </h4>
 
       <div className="flex flex-col">
