@@ -4,7 +4,7 @@
 
 ![DEMO](https://www.canva.com/design/DAF6T9_jKH0/PI_GUvoeIrhlpPIrrm6EDA/view?utm_content=DAF6T9_jKH0&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
-  <img src="https://www.canva.com/design/DAF6T9_jKH0/PI_GUvoeIrhlpPIrrm6EDA/view?utm_content=DAF6T9_jKH0&utm_campaign=designshare&utm_medium=link&utm_source=editor" alt="Project Banner">
+  <img src="https://www.canva.com/design/DAF6T9_jKH0/view" alt="Project Banner">
     </a>
 
 <!-- [Demo](https://www.canva.com/design/DAF6T9_jKH0/PI_GUvoeIrhlpPIrrm6EDA/view?utm_content=DAF6T9_jKH0&utm_campaign=designshare&utm_medium=link&utm_source=editor) -->
