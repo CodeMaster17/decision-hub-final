@@ -77,14 +77,21 @@ const TestRule = () => {
                 [ruleId]: !prevStates[ruleId]
             };
 
-            console.log("Checkbox for rule " + ruleId + " is now " + (newState[ruleId] ? "checked" : "unchecked"));
-            const SQLQUERY = createQuery(dataResult.ifRuleSchema)
-            setSQLQUERY(SQLQUERY)
-            sendSQlTOPG();
-            console.log(SQLQUERY)
             return newState;
         });
     };
+
+
+    useEffect(() => {
+        // Generate SQL query based on updated toggleStates
+        const activeRules = dataResult.ifRuleSchema.filter(rule => toggleStates[rule._id]);
+        const SQLQUERY = createQuery(activeRules);
+        setSQLQUERY(SQLQUERY);
+        sendSQlTOPG()
+        console.log(SQLQUERY);
+    }, [toggleStates, dataResult.ifRuleSchema]);
+
+
 
     const userDatacolumn = ['id', 'income', 'credit score', 'loan amount', 'employment status', 'age', 'debt/income ratio']
     // fetch user data
@@ -95,7 +102,6 @@ const TestRule = () => {
             const response = await fetch(`http://localhost:3003/userdata`)
             const json = await response.json()
             setUserData(json)
-            // console.log(json)
         } catch (err) {
             console.log(err)
         }
@@ -115,26 +121,28 @@ const TestRule = () => {
     }
 
     return (
-        <div className='border-2'>
+        <div className='bg-white p-4 rounded-md'>
             {dataResult.name ? (
                 <>
-                    <h1>Rule Name <strong>{dataResult.name}</strong> </h1>
-                    <p>{dataResult.description}</p>
-                    {/* Rest of the code */}
+                    <h1 className='text-[1.5rem]'>Rule Name :<strong> {dataResult.name}</strong> </h1>
+                    <br />
+                    <p className='text-[1.5rem]'>{dataResult.description}</p>
+                    <br />
+                    <p className='text-[1.5rem]'>If statements are connected by {dataResult.connectedBy}</p>
+
                 </>
             ) : (
                 <p>Loading...</p>
             )}
-            <p>{dataResult.description}</p>
-            <p>If statements are connected by {dataResult.connectedBy}</p>
+            <br />
             <br />
             <br />
             <div className='w-full flex flex-col justify-start items-start'>
-                <p className='text-[3rem] text-black'>If</p>
+                <p className='text-[1.5rem] text-black'>Rule :</p>
                 <br />
                 <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
                     <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-                        Top Channels
+                        Conditions:
                     </h4>
 
                     <div className="flex flex-col">
@@ -187,7 +195,7 @@ const TestRule = () => {
                                                     checked={toggleStates[rule._id] || false}
                                                     onChange={() => handleCheckboxChange(rule._id)}
                                                 />
-                                                <label htmlFor={`checkbox-${rule._id}`}> I have a bike</label>
+                                                <label htmlFor={`checkbox-${rule._id}`}> Check to add query</label>
                                             </div>
                                         </div>
                                     </div>
@@ -197,16 +205,13 @@ const TestRule = () => {
                     })}
 
                 </div>
-            </div >
-
-
-            {/* <ThenForm /> */}
+            </div >``
 
             {/* Then form */}
             <br />
             <br />
             <div className='w-full flex flex-col justify-start items-start'>
-                <p className='text-[3rem] text-black'>Then</p>
+                <p className='text-[1.5rem] text-black'>Action :</p>
                 <br />
                 <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
                     <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
@@ -247,10 +252,10 @@ const TestRule = () => {
                                         </div>
 
                                         <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-                                            {/* TOGGLE BUTTON */}
+
                                             <form action="">
-                                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                                <label htmlFor="vehicle1"> I have a bike</label><br />
+                                                <input type="checkbox" id="rule" name="rule" value="rule" />
+                                                <label htmlFor="rule"> Check to add query</label><br />
                                             </form>
                                         </div>
                                     </div>
@@ -263,6 +268,9 @@ const TestRule = () => {
                 <br />
                 <br />
                 <button className="flex  justify-center rounded bg-primary p-3 font-medium text-gray w-[200px]" onClick={getUserData} >Fetch User Data</button>
+                <span className='text-red-500'>* This will fetch all the user data</span>
+                <br />
+                <br />
                 <TableOne userData={userData} userDatacolumn={userDatacolumn} />
             </div >
 

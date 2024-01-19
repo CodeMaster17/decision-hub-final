@@ -45,7 +45,7 @@ exports.rulepost = async (req, res) => {
 // get all the rules
 exports.getAllRules = async (req, res) => {
     try {
-        const rulesData = await rules.find(); // Fetch all rules
+        const rulesData = await rules.find({}); // Fetch all rules
         res.status(200).json(rulesData);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching rules', error: error.message });

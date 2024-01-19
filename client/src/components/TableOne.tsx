@@ -32,7 +32,6 @@ const TableOne = ({ userData, userDatacolumn }) => {
         <div className="grid grid-cols-7 border-b border-stroke dark:border-strokedark sm:grid-cols-7  ">
 
           {userData.map((item, index) => {
-            const userDatacolumn = ['id', 'income', 'credit score', 'loan amount', 'employment status', 'age', 'debt/income ratio']
             return (
               <>
                 <div className="flex items-center gap-3 p-2.5 xl:p-5">

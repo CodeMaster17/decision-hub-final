@@ -11,9 +11,4 @@ export const createQuery = (formFields) => {
   let sentence = `SELECT * FROM userdata WHERE ${conditions}`;
   return sentence;
 };
-const formFields = [
-  { id: 1, name: 'Alice' },
-  { id: 2, name: 'Bob' },
-  { id: 3, name: 'Charlie' },
-];
-createQuery(formFields);
+

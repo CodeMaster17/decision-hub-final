@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Breadcrumb from '../../components/Breadcrumb'
 
+import TableTwo from '../../components/TableTwo';
+
 const TestRules = () => {
     const [rules, setRules] = useState([]); // State to hold the rules
 
@@ -9,7 +11,7 @@ const TestRules = () => {
         // Function to fetch rules from the server
         const fetchRules = async () => {
             try {
-                const response = await fetch('http://localhost:5002/rules'); // Replace with your actual API endpoint
+                const response = await fetch('http://localhost:5002/rules'); 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -21,8 +23,10 @@ const TestRules = () => {
             }
         };
 
-        fetchRules(); // Call the function to fetch rules
+        fetchRules(); 
     }, []);
+
+    const userDataColumn = ['Name', 'Description']
 
     return (
         <>
@@ -31,7 +35,7 @@ const TestRules = () => {
                 Create rules +
             </Link>
             <br />
-            <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+            {/* <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
                 <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
                     Top Channels
                 </h4>
@@ -98,7 +102,9 @@ const TestRules = () => {
                     )
                 })}
 
-            </div>
+            </div> */}
+
+            <TableTwo data={rules} />
         </>
     )
 }

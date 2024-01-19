@@ -123,3 +123,20 @@ export const results: resultInterface[] = [
     id: 2,
   },
 ];
+interface combineInterface {
+  name: string;
+  value: string;
+  id: number;
+}
+export const combine: combineInterface[] = [
+  {
+    name: 'AND',
+    value: 'AND',
+    id: 1,
+  },
+  {
+    name: 'OR',
+    value: 'OR',
+    id: 2,
+  },
+];
