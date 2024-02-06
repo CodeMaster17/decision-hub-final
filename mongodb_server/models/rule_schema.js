@@ -38,24 +38,23 @@ const thenRruleItemSchema = new mongoose.Schema({
 
 });
 
-const rule_schema = new mongoose.Schema({
+const register_schema = new mongoose.Schema({
 
-    name: {
+    email: {
         type: String,
-        required: false,
-        unique: false
+
+    },
+    password: {
+        type: String,
     },
 
-    description: {
-        type: String,
-        required: false,
-        unique: false
-    },
-    connectedBy: String,
-    ifRuleSchema: [ifRruleItemSchema],
-    thenRuleSchema: [thenRruleItemSchema],
 });
 
-const RuleSchema = mongoose.model('RuleSchema', rule_schema);
+const register = mongoose.model('register', register_schema);
+module.exports = register;
 
-module.exports = RuleSchema;
+
+// const RuleSchema = mongoose.model('RuleSchema', rule_schema);
+
+// module.exports = RuleSchema;
+

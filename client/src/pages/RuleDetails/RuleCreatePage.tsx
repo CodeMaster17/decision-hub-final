@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from 'react'
 import Breadcrumb from '../../components/Breadcrumb'
-import { Link } from 'react-router-dom'
 import { combine, numbers, operator, results, thenFormProperties } from '../../constants/data'
 import RightSidebar from '../../components/RightSidebar'
 import DropDownIcon from '../../svg/DropDownIcon'
