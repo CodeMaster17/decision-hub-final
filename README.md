@@ -1,4 +1,6 @@
 # Decision Hub
+![image](https://github.com/CodeMaster17/decision-hub-final/assets/96763776/f1fd2396-94c3-4752-8ba2-5074cd4075f9)
+
 
 ## Decision Hub is a no-code rule builder for your business logic.
 
