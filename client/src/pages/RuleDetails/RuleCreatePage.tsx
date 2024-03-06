@@ -98,7 +98,7 @@ const RuleCreatePage = () => {
         console.log("RuleData", ruleData)
         createQuery()
         try {
-            const response = await fetch('http://localhost:5002/create-rule', {
+            const response = await fetch('https://decision-hub-final-1-0z6h.onrender.com/create-rule', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

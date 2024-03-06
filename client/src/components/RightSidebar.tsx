@@ -45,7 +45,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isOpen, data }) => {
     };
     const sendSQlTOPG = async () => {
         try {
-            const response = await fetch(`http://localhost:3003/userdata/${SQLQUERY}`)
+            const response = await fetch(`https://postgres-server-harshit.onrender.com/userdata/${SQLQUERY}`)
             const json = await response.json()
             console.log("SEND SQL TO PG response", json)
             setUserData(json)

@@ -7,7 +7,7 @@ interface ToggleStates {
 }
 interface Rule {
     _id: string;
-   
+
 }
 interface DataResult {
     name: string;
@@ -36,7 +36,7 @@ const TestRule = () => {
             }
 
             try {
-                const response = await fetch(`http://localhost:5002/rules/${id}`);
+                const response = await fetch(`https://decision-hub-final-1-0z6h.onrender.com/${id}`);
                 if (!response.ok) {
                     console.error('Network response was not ok');
                     return;
@@ -98,7 +98,7 @@ const TestRule = () => {
     const getUserData = async () => {
 
         try {
-            const response = await fetch(`http://localhost:3003/userdata`)
+            const response = await fetch(`https://postgres-server-harshit.onrender.com/userdata`)
             const json = await response.json()
             setUserData(json)
         } catch (err) {
@@ -110,7 +110,7 @@ const TestRule = () => {
 
     const sendSQlTOPG = async () => {
         try {
-            const response = await fetch(`http://localhost:3003/userdata/${SQLQUERY}`)
+            const response = await fetch(`https://postgres-server-harshit.onrender.com/userdata/${SQLQUERY}`)
             const json = await response.json()
             console.log("SEND SQL TO PG response", json)
             setUserData(json)

@@ -11,7 +11,7 @@ const TestRules = () => {
         // Function to fetch rules from the server
         const fetchRules = async () => {
             try {
-                const response = await fetch('http://localhost:5002/rules'); 
+                const response = await fetch('https://decision-hub-final-1-0z6h.onrender.com/rules'); 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
