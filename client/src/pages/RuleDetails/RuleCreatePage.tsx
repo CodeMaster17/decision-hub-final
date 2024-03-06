@@ -7,7 +7,8 @@ import DropDownIcon from '../../svg/DropDownIcon'
 import { useFetchColumns } from '../../hooks/rules/useFetchCcolumnsHook'
 
 import { AutoComplete, AutoCompleteCompleteEvent } from "primereact/autocomplete";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const RuleCreatePage = () => {
@@ -84,6 +85,11 @@ const RuleCreatePage = () => {
         data[index][name] = event.target ? event.target.value : event;
         setFormFields(data);
     };
+    const showToastMessage = () => {
+        toast.success("Rule Added Sucessfully", {
+            position: toast.POSITION.TOP_RIGHT,
+        });
+    }
     const save = async (e) => {
         e.preventDefault();
 
@@ -112,6 +118,7 @@ const RuleCreatePage = () => {
 
             const responseData = await response.json();
             console.log('Rule saved:', responseData);
+            showToastMessage()
 
         } catch (error) {
             console.error('Error saving rule:', error);
@@ -415,7 +422,7 @@ const RuleCreatePage = () => {
                         <button className="ml-4 flex  justify-center rounded bg-primary p-3 font-medium text-gray" onClick={TestHandler} >Test</button>
                     </div>
                 </div >
-
+                <ToastContainer />
             </div >
         </>
     )
