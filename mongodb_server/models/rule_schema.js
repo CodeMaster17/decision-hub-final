@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
-const { v4: uuidv4 } = require('uuid');
 
 const ifRruleItemSchema = new mongoose.Schema({
 
@@ -38,23 +36,24 @@ const thenRruleItemSchema = new mongoose.Schema({
 
 });
 
-const register_schema = new mongoose.Schema({
+const rule_schema = new mongoose.Schema({
 
-    email: {
+    name: {
         type: String,
-
-    },
-    password: {
-        type: String,
+        required: false,
+        unique: false
     },
 
+    description: {
+        type: String,
+        required: false,
+        unique: false
+    },
+    connectedBy: String,
+    ifRuleSchema: [ifRruleItemSchema],
+    thenRuleSchema: [thenRruleItemSchema],
 });
 
-const register = mongoose.model('register', register_schema);
-module.exports = register;
+const RuleSchema = mongoose.model('RuleSchema', rule_schema);
 
-
-// const RuleSchema = mongoose.model('RuleSchema', rule_schema);
-
-// module.exports = RuleSchema;
-
+module.exports = RuleSchema;

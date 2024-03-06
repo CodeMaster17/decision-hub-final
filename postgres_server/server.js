@@ -1,4 +1,5 @@
-const PORT = 3003
+require('dotenv').config()
+const PORT = process.env.DB_PORT
 const express = require('express')
 const cors = require('cors')
 const app = express()
