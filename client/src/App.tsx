@@ -2,10 +2,11 @@ import { Suspense, lazy, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
-import ECommerce from './pages/Dashboard';
 
 import Loader from './common/Loader';
 import routes from './routes';
+import Dashboard from './pages/Dashboard';
+import Home from './pages/Home';
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
@@ -26,8 +27,11 @@ function App() {
         containerClassName="overflow-auto"
       />
       <Routes>
+        <Route>
+          {/* <Route path="/" element={<Home />} /> */}
+        </Route>
         <Route element={<DefaultLayout />}>
-          <Route index element={<ECommerce />} />
+          <Route path="/" index element={<Dashboard />} />
           {routes.map((routes, index) => {
             const { path, component: Component } = routes;
             return (

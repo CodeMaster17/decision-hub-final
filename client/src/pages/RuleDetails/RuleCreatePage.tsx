@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import Breadcrumb from '../../components/Breadcrumb'
 import { combine, numbers, operator, results, thenFormProperties } from '../../constants/data'
 import RightSidebar from '../../components/RightSidebar'
@@ -9,6 +9,7 @@ import { useFetchColumns } from '../../hooks/rules/useFetchCcolumnsHook'
 import { AutoComplete, AutoCompleteCompleteEvent } from "primereact/autocomplete";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { column } from 'mathjs'
 
 
 const RuleCreatePage = () => {
@@ -72,12 +73,16 @@ const RuleCreatePage = () => {
             property: '',
             operator: '',
             value: '',
+            connectedBy: ''
         }
         setFormFields([...formFields, object])
     }
 
+    interface FormFields {
+        [key: string]: string;
+    }
     // for taking inputs from the form fields
-    const handleFormChange = (event, index, name) => {
+    const handleFormChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>, index: number, name: string) => {
         // let data: any = [...formFields];
         // data[index][event.target.name] = event.target.value;
         // setFormFields(data);
@@ -160,12 +165,15 @@ const RuleCreatePage = () => {
         console.log(sentence); // For debugging, remove in production
     }
 
+    interface Column {
+        column_name: string;
+    }
     // fetching columns from the database
-    const [property, setProperty] = useState([])
+    const [property, setProperty] = useState<string[]>([])
     useEffect(() => {
         const fetcFunction = async () => {
             let columns = await useFetchColumns();
-            const columnNames = columns.map(column => column.column_name);
+            const columnNames = columns.map((column: Column) => column.column_name);
 
             console.log("Array Values", columnNames)
             setProperty(columnNames)
@@ -258,13 +266,13 @@ const RuleCreatePage = () => {
                                                                 <label className="mb-3 block text-black dark:text-white">
                                                                     Select Property
                                                                 </label>
-                                                                {/*
+
                                                                 <div className="relative z-20 bg-white dark:bg-form-input">
-                                                                    <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" name="property" value={form.property} onChange={(e) => handleFormChange(e, index)}>
-                                                                        {property.map((item) => {
+                                                                    <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" name="property" value={form.property} onChange={(e) => handleFormChange(e, index, 'property')}>
+                                                                        {property.map((item, index) => {
                                                                             return (
                                                                                 <>
-                                                                                    <option value={item.value} key={item.id}>{item.column_name}</option>
+                                                                                    <option value={item} key={index}>{item}</option>
                                                                                 </>
                                                                             )
                                                                         })}
@@ -272,16 +280,7 @@ const RuleCreatePage = () => {
                                                                     <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
                                                                         <DropDownIcon />
                                                                     </span>
-                                                                </div> */}
-
-                                                                <AutoComplete value={form.property} suggestions={items}
-                                                                    completeMethod={search}
-                                                                    className="w-full rounded border-white bg-white bg-transparent py-3 h-full font-medium outline-none transition 
-                                                                    active:border-white
-                                                                    disabled:cursor-default disabled:bg-whiter  dark:bg-form-input "
-                                                                    onChange={(e) => handleFormChange(e.value, index, 'property')} />
-
-
+                                                                </div>
 
                                                             </div>
                                                             <div>
@@ -347,7 +346,7 @@ const RuleCreatePage = () => {
 
 
                     {/* Then form */}
-                    <div div className='w-full flex flex-col justify-center items-start mt-8' >
+                    <div className='w-full flex flex-col justify-center items-start mt-8' >
 
                         <p className='text-[2rem] text-black'>Action :</p>
                         <br />
@@ -417,7 +416,6 @@ const RuleCreatePage = () => {
                         </div>
                     </div >
                     <div className='flex mt-4'>
-
                         <button className=" flex  justify-center rounded bg-primary p-3 font-medium text-gray" onClick={save} >Save</button>
                         <button className="ml-4 flex  justify-center rounded bg-primary p-3 font-medium text-gray" onClick={TestHandler} >Test</button>
                     </div>

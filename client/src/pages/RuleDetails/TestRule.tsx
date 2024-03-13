@@ -36,7 +36,7 @@ const TestRule = () => {
             }
 
             try {
-                const response = await fetch(`https://decision-hub-final-1-0z6h.onrender.com/${id}`);
+                const response = await fetch(`https://decision-hub-final-1-0z6h.onrender.com/rules/${id}`);
                 if (!response.ok) {
                     console.error('Network response was not ok');
                     return;

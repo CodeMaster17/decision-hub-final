@@ -1,7 +1,6 @@
 
 import { useState } from 'react'
 import Breadcrumb from '../../components/Breadcrumb'
-import { Link } from 'react-router-dom'
 import { numbers, operator, property } from '../../constants/data'
 import ThenForm from './ThenForm'
 
