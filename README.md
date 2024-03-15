@@ -10,7 +10,6 @@
 - Mongo DB
 - Postgres DB
 - Tailwind CSS
-- Sequelize ORM
 - Express.js
 - Mongoose ORM
 - Vite
@@ -36,15 +35,15 @@ Install the project dependencies using npm:
   - postgres backend
 
 # Start the client
-
+`npm i` <br/><br/>
 `npx vite`
 
 # Start the mongodb server
-
+`npm i` <br/><br/>
 `npm start`
 
 # Start the postgres backend
-
+`npm i` <br/><br/>
 `npm start`
 
 ## Add the necessary env variables
